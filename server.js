@@ -25,9 +25,18 @@ if (!CLIENT_ID || !CLIENT_SECRET) {
 }
 
 // Enable CORS
+// Enable CORS - Place this BEFORE app.use(express.json())
 app.use(cors({
-  origin: [FRONTEND_URL, 'http://localhost:3000', 'https://lustrous-twilight-f82d08.netlify.app'],
-  credentials: true
+  origin: [
+    'https://bigbeastbobe.github.io',  // GitHub Pages main domain
+    'https://spotifyhtmlv3.netlify.app',
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://localhost:5500'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
@@ -392,3 +401,4 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log('✅ ========================================');
   console.log('');
 });
+
